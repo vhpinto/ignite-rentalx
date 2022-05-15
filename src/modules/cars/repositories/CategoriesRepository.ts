@@ -4,8 +4,20 @@ import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesReposito
 class CategoriesRepository implements ICategoriesRepository {
     private categories: Category[] = [];
 
-    constructor() {
+    //  Singleton pattern: Ensures the class is instantiated only once
+
+    private static INSTANCE: CategoriesRepository;
+
+    private constructor() {
         this.categories = [];
+    }
+
+    public static getInstance() {
+
+        if(!CategoriesRepository.INSTANCE){
+            CategoriesRepository.INSTANCE = new CategoriesRepository();
+        }
+        return CategoriesRepository.INSTANCE;
     }
 
     create({ description, name }: ICreateCategoryDTO): void {
