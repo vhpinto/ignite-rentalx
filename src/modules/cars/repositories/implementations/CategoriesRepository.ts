@@ -40,6 +40,10 @@ class CategoriesRepository implements ICategoriesRepository {
 
         return category
     }
+
+    import(file: Express.Multer.File): void {
+        console.log(file);
+    }
 }
 
 export { CategoriesRepository }
